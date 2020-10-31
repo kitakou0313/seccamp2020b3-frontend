@@ -1,6 +1,10 @@
 // Fill in with your values
-const POST_ENDPOINT = 'https://seccamp2020b3-98.azurewebsites.net/api/post'
-const TIMELINE_ENDPOINT = 'https://seccamp2020b3-98.azurewebsites.net/api/timeline'
+// const POST_ENDPOINT = 'https://seccamp2020b3-98.azurewebsites.net/api/post'
+// const TIMELINE_ENDPOINT = 'https://seccamp2020b3-98.azurewebsites.net/api/timeline'
+
+const POST_ENDPOINT = 'https://seccamp2020b3-10.azurewebsites.net/api/post'
+const TIMELINE_ENDPOINT = 'https://seccamp2020b3-10.azurewebsites.net/api/timeline'
+
 
 function updateUI() {
   const isLoggedIn = localStorage.getItem('id_token');
@@ -61,21 +65,23 @@ document.getElementById('btn-timeline').addEventListener('click', (e) => {
   const email = document.getElementById('email').value;
 
   fetch(TIMELINE_ENDPOINT, {
-    method: 'POST',
-    credentials: 'include',
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: email ? JSON.stringify({id: email}) : "",
-  })
+      method: 'POST',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: email ? JSON.stringify({
+        id: email
+      }) : "",
+    })
     .then(response => response.json())
     .then((data) => {
       console.log('Message:', data);
       const base = document.getElementById('messages')
       base.innerHTML = '';
 
-      const template  = document.getElementById('msgtmpl');
+      const template = document.getElementById('msgtmpl');
       data.msgs.forEach((msg) => {
         const msgrow = template.cloneNode(true);
         msgrow.id = null;
@@ -95,16 +101,16 @@ document.getElementById('btn-post').addEventListener('click', (e) => {
   e.preventDefault();
 
   fetch(POST_ENDPOINT, {
-    method: 'POST',
-    credentials: 'include',
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      text: document.getElementById('text').value,
-    }),
-  })
+      method: 'POST',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        text: document.getElementById('text').value,
+      }),
+    })
     .then(response => response.json())
     .then(data => {
       console.log('Response:', data);
