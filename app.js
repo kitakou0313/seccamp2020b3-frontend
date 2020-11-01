@@ -96,6 +96,36 @@ document.getElementById('btn-timeline').addEventListener('click', (e) => {
     });
 });
 
+// Handle timeline api call
+document.getElementById('btn-timeline').addEventListener('click', (e) => {
+  e.preventDefault();
+
+  fetch(TIMELINE_ENDPOINT, {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+    })
+    .then(response => response.json())
+    .then((data) => {
+      console.log('Message:', data);
+      const base = document.getElementById('messages2')
+      base.innerHTML = '';
+
+      const template = document.getElementById('msgtmpl2');
+      data.msgs.forEach((msg) => {
+        const msgrow = template.cloneNode(true);
+        msgrow.id = null;
+        msgrow.querySelector('.msgtext').textContent = msg.text;
+        msgrow.querySelector('.msgemail').textContent = msg.user_id;
+        msgrow.querySelector('.msgdate').textContent = new Date(msg.timestamp);
+        base.appendChild(msgrow);
+      });
+    })
+    .catch((e) => {
+      console.log('error', e);
+    });
+});
+
 // Handle post api call
 document.getElementById('btn-post').addEventListener('click', (e) => {
   e.preventDefault();
