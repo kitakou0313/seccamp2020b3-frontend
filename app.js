@@ -98,7 +98,7 @@ document.getElementById('btn-timeline').addEventListener('click', (e) => {
 });
 
 // Handle timeline api call
-document.getElementById('btn-timeline').addEventListener('click', (e) => {
+document.getElementById('btn-timeline2').addEventListener('click', (e) => {
   e.preventDefault();
 
   fetch(TIMELINE_ENDPOINT, {
