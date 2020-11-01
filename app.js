@@ -165,7 +165,7 @@ document.getElementById('btn-follow').addEventListener('click', (e) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        text: document.getElementById('follow-user').value,
+        user: document.getElementById('follow-user').value,
       }),
     })
     .then(response => response.json())
