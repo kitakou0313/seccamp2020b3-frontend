@@ -5,7 +5,7 @@
 const POST_ENDPOINT = 'https://seccamp2020b3-10.azurewebsites.net/api/post'
 const FOLLOW_ENDPOINT = 'https://seccamp2020b3-10.azurewebsites.net/api/follow'
 const TIMELINE_ENDPOINT = 'https://seccamp2020b3-10.azurewebsites.net/api/timeline'
-
+const TIMELINE2_ENDPOINT = 'https://seccamp2020b3-10.azurewebsites.net/api/timeline2'
 
 function updateUI() {
   const isLoggedIn = localStorage.getItem('id_token');
@@ -97,11 +97,11 @@ document.getElementById('btn-timeline').addEventListener('click', (e) => {
     });
 });
 
-// Handle timeline api call
+// Handle timeline2 api call
 document.getElementById('btn-timeline2').addEventListener('click', (e) => {
   e.preventDefault();
 
-  fetch(TIMELINE_ENDPOINT, {
+  fetch(TIMELINE2_ENDPOINT, {
       method: 'GET',
       credentials: 'include',
       mode: 'cors',
