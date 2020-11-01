@@ -3,6 +3,7 @@
 // const TIMELINE_ENDPOINT = 'https://seccamp2020b3-98.azurewebsites.net/api/timeline'
 
 const POST_ENDPOINT = 'https://seccamp2020b3-10.azurewebsites.net/api/post'
+const FOLLOW_ENDPOINT = 'https://seccamp2020b3-10.azurewebsites.net/api/follow'
 const TIMELINE_ENDPOINT = 'https://seccamp2020b3-10.azurewebsites.net/api/timeline'
 
 
@@ -139,6 +140,32 @@ document.getElementById('btn-post').addEventListener('click', (e) => {
       },
       body: JSON.stringify({
         text: document.getElementById('text').value,
+      }),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Response:', data);
+      document.getElementById('message').textContent = '';
+    })
+    .catch((e) => {
+      console.log('error', e);
+    });
+  return false;
+});
+
+// Handle follow api call
+document.getElementById('btn-follow').addEventListener('click', (e) => {
+  e.preventDefault();
+
+  fetch(FOLLOW_ENDPOINT, {
+      method: 'POST',
+      credentials: 'include',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        text: document.getElementById('follow-user').value,
       }),
     })
     .then(response => response.json())
